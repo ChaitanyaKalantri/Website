@@ -98,7 +98,7 @@ class Landing extends Component {
 
 
                 <FacebookLogin
-                  appId="623824637982268"
+                  appId="2120239234888071"
                   autoLoad={false}
                   fields="name,email,picture"
                   callback={responseFacebook}/>
