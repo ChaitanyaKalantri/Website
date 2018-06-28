@@ -25,8 +25,12 @@ import Profile from './components/profile/Profile';
 import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
 import NotFound from './components/not-found/NotFound';
+//import GoogleLanding from './components/layout/GoogleLanding';
+
 
 import './App.css';
+import Home from "./services/Home";
+
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -49,7 +53,9 @@ if (localStorage.jwtToken) {
   }
 }
 
+
 class App extends Component {
+
   render() {
     return (
       <Provider store={store}>
@@ -58,9 +64,11 @@ class App extends Component {
             <Navbar />
             <Route exact path="/" component={Landing} />
             <div className="container">
+              <Route path="/home" component={Home}/>
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/profiles" component={Profiles} />
+
               <Route exact path="/profile/:handle" component={Profile} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />

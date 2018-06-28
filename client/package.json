@@ -7,8 +7,13 @@
     "classnames": "^2.2.6",
     "jwt-decode": "^2.2.0",
     "moment": "^2.22.2",
+    "nodemailer": "^4.6.7",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-facebook-login": "^4.0.1",
+    "react-google-login": "^3.2.1",
     "react-moment": "^0.7.7",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
@@ -22,5 +27,15 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:5000"
+  "proxy": {
+    "/api/*": {
+      "target": "http://localhost:5000"
+    },
+    "/dashboard": {
+      "target": "http://localhost:5000"
+    },
+    "": {
+      "target": "http://localhost:5000"
+    }
+  }
 }
