@@ -105,7 +105,7 @@ class Landing extends Component {
                 <br/><br/>
 
                 <GoogleLogin
-                  clientId="339351201215-nbof3cd7uomul6fbqkhnehpf82pke2dh.apps.googleusercontent.com"
+                  clientId="78332496410-hnjiv4fhaheeq83qv7204ir3714d6ten.apps.googleusercontent.com"
                   buttonText="Login with Google"
                   onSuccess={responseGoogle}
                   onFailure={responseGoogle}/>

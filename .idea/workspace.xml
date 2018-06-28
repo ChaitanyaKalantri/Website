@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea62010c-e5a4-4959-8ef3-34741b40d9d0" name="Default" comment="Hard coded id's and removed the config folder from src">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ea62010c-e5a4-4959-8ef3-34741b40d9d0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/client/src/components/layout/Landing.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/Landing.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/config/keys.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/config/keys_dev.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/config/keys_prod.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/config/passport.js" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,7 +19,7 @@
       <file leaf-file-name="authActions.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/actions/authActions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
+            <state relative-caret-position="-478">
               <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
             </state>
           </provider>
@@ -69,8 +64,8 @@
       <file leaf-file-name="Landing.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/components/layout/Landing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="123" column="2" selection-start-line="123" selection-start-column="2" selection-end-line="123" selection-end-column="2" />
+            <state relative-caret-position="166">
+              <caret line="107" column="99" selection-start-line="107" selection-start-column="99" selection-end-line="107" selection-end-column="99" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -336,25 +331,33 @@
       <option name="presentableId" value="Default" />
       <updated>1529139421784</updated>
       <workItem from="1529139424174" duration="179203000" />
-      <workItem from="1530170143746" duration="13175000" />
+      <workItem from="1530170143746" duration="14009000" />
     </task>
+    <task id="LOCAL-00001" summary="Hard coded id's and removed the config folder from src">
+      <created>1530194213981</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1530194213981</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="192378000" />
+    <option name="totallyTimeSpent" value="193212000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Messages" visible="true" weight="0.32969698" />
+      <window_info anchor="bottom" id="Messages" weight="0.32969698" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32969698" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="right" id="Mongo Explorer" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.29090908" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.29090908" />
       <window_info anchor="bottom" id="TypeScript" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19957082" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
@@ -722,13 +725,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/actions/authActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/keys.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -786,6 +782,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/services/Home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="39" selection-start-column="39" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/auth/Register.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -796,17 +799,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/services/Home.js">
+    <entry file="file://$PROJECT_DIR$/client/src/actions/authActions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="39" selection-start-column="39" selection-end-column="39" />
+        <state relative-caret-position="-478">
+          <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/layout/Landing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="123" column="2" selection-start-line="123" selection-start-column="2" selection-end-line="123" selection-end-column="2" />
+        <state relative-caret-position="166">
+          <caret line="107" column="99" selection-start-line="107" selection-start-column="99" selection-end-line="107" selection-end-column="99" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
