@@ -6,9 +6,7 @@ import {registerUserGoogle} from "../../actions/authActions";
 
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
-import PostData from "../../services/PostData";
-var facebookClient = require("../../config/keys").facebookClientId;
-var googleClient = require("../../config/keys").googleClientID;
+
 
 
 class Landing extends Component {
@@ -19,40 +17,7 @@ class Landing extends Component {
       loginError: false,
       redirect: false
     };
-    this.signup = this.signup.bind(this);
-  }
 
-  signup(res, type) {
-    let postData;
-    if (type === 'facebook' && res.email) {
-      postData = {
-        name: res.name,
-        provider: type,
-        email: res.email,
-        provider_id: res.id,
-        token: res.accessToken,
-        provider_pic: res.picture.data.url
-      };
-    }
-
-    if (type === 'google' && res.w3.U3) {
-      postData = {
-        name: res.w3.ig,
-        provider: type,
-        email: res.w3.U3,
-        provider_id: res.El,
-        token: res.Zi.access_token,
-        provider_pic: res.w3.Paa
-      };
-    }
-
-    if (postData) {
-      PostData('signup', postData).then((result) => {
-        let responseJson = result;
-        sessionStorage.setItem("userData", JSON.stringify(responseJson));
-        this.setState({redirect: true});
-      });
-    } else {}
   }
 
 
@@ -81,17 +46,17 @@ class Landing extends Component {
         avatar: response.picture,
         password: response.id,
         password2: response.id
-      }
+      };
 
       const loginUser = {
         email: response.email,
         password: response.id
-      }
+      };
 
       this.props.registerUserGoogle(newUser, loginUser, this.props.history);
 
       //this.props.history.push('/dashboard');
-    }
+    };
 
     const responseGoogle = (response) => {
       //console.log("google console");
@@ -106,16 +71,16 @@ class Landing extends Component {
         avatar: response.profileObj.imageUrl,
         password: response.googleId,
         password2: response.googleId
-      }
+      };
 
       const loginUser = {
         email: response.profileObj.email,
         password: response.googleId
-      }
+      };
 
       this.props.registerUserGoogle(newUser, loginUser, this.props.history);
 
-    }
+    };
 
     return (
       <div className="landing">
@@ -133,14 +98,14 @@ class Landing extends Component {
 
 
                 <FacebookLogin
-                  appId={facebookClient}
+                  appId="623824637982268"
                   autoLoad={false}
                   fields="name,email,picture"
                   callback={responseFacebook}/>
                 <br/><br/>
 
                 <GoogleLogin
-                  clientId={googleClient}
+                  clientId="339351201215-nbof3cd7uomul6fbqkhnehpf82pke2dh.apps.googleusercontent.com"
                   buttonText="Login with Google"
                   onSuccess={responseGoogle}
                   onFailure={responseGoogle}/>
@@ -156,7 +121,7 @@ class Landing extends Component {
 Landing.propTypes = {
   auth: PropTypes.object.isRequired,
   registerUserGoogle: PropTypes.func.isRequired,
-}
+};
 
 const mapStateToProps = (state) => ({
   auth: state.auth
