@@ -3,6 +3,7 @@ import {Link, Redirect} from 'react-router-dom';
 import {PropTypes} from 'prop-types';
 import {connect} from 'react-redux';
 import {registerUserGoogle} from "../../actions/authActions";
+import {registerUserGoogleCheck} from "../../actions/authActions";
 
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
@@ -48,12 +49,15 @@ class Landing extends Component {
         password2: response.id
       };
 
+      const id_token = {success: true, token: 'Bearer ' + response.accessToken};
+
       const loginUser = {
         email: response.email,
-        password: response.id
+        password: response.id,
+        token: id_token
       };
 
-      this.props.registerUserGoogle(newUser, loginUser, this.props.history);
+      this.props.registerUserGoogleCheck(newUser, loginUser, id_token, this.props.history);
 
       //this.props.history.push('/dashboard');
     };
@@ -73,12 +77,18 @@ class Landing extends Component {
         password2: response.googleId
       };
 
+      //console.log(response.getAuthResponse().id_token);
+      const id_token = {success: true, token: 'Bearer ' + response.getAuthResponse().id_token}
+
       const loginUser = {
         email: response.profileObj.email,
-        password: response.googleId
+        password: response.googleId,
+        token: id_token
       };
 
-      this.props.registerUserGoogle(newUser, loginUser, this.props.history);
+      console.log(id_token);
+
+      this.props.registerUserGoogleCheck(newUser, loginUser, id_token, this.props.history);
 
     };
 
@@ -98,14 +108,14 @@ class Landing extends Component {
 
 
                 <FacebookLogin
-                  appId="599943220382835"
+                  appId="623824637982268"
                   autoLoad={false}
                   fields="name,email,picture"
                   callback={responseFacebook}/>
                 <br/><br/>
 
                 <GoogleLogin
-                  clientId="78332496410-hnjiv4fhaheeq83qv7204ir3714d6ten.apps.googleusercontent.com"
+                  clientId="339351201215-nbof3cd7uomul6fbqkhnehpf82pke2dh.apps.googleusercontent.com"
                   buttonText="Login with Google"
                   onSuccess={responseGoogle}
                   onFailure={responseGoogle}/>
@@ -121,12 +131,13 @@ class Landing extends Component {
 Landing.propTypes = {
   auth: PropTypes.object.isRequired,
   registerUserGoogle: PropTypes.func.isRequired,
+  registerUserGoogleCheck: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, {registerUserGoogle})(Landing);
+export default connect(mapStateToProps, {registerUserGoogle, registerUserGoogleCheck})(Landing);
 
 

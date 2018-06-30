@@ -16,13 +16,13 @@ export const registerUser = (userData, history) => dispatch => {
 
 
 // Faceboook Login
-export const registerUserGoogle = (userData, loginUser,history) => dispatch => {
+export const registerUserGoogle = (userData, loginUser,id_token, history) => dispatch => {
   axios.post('/api/users/register', userData)
     .then(
-
-      axios.post('./api/users/login', loginUser)
+      axios.post('/api/users/login', loginUser)
         .then(res => {
           // Save to localStorage
+          console.log(res);
           const { token} = res.data;
           localStorage.setItem('jwtToken', token);
 
@@ -39,6 +39,39 @@ export const registerUserGoogle = (userData, loginUser,history) => dispatch => {
         })
         .catch(res => {
           // Save to localStorage
+          const { token} = id_token;
+          //console.log(id_token);
+          localStorage.setItem('jwtToken', token);
+
+          // Set token to Auth header
+          setAuthToken(token);
+
+          // Decode token to get user data
+          const decoded = jwt_decode(token);
+          console.log(decoded);
+          // Set current user
+          dispatch(setCurrentUser(decoded));
+          history.push('/dashboard');
+
+        })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      }));
+};
+
+
+// Google signin
+export const registerUserGoogleCheck = (userData, loginUser,id_token, history) => dispatch => {
+  axios.post('/api/users/registerGoogle', userData)
+    .then(
+      axios.post('/api/users/loginGoogle', loginUser)
+        .then(res => {
+          // Save to localStorage
+          console.log(res);
+          //console.log();
           const { token} = res.data;
           localStorage.setItem('jwtToken', token);
 
@@ -53,12 +86,26 @@ export const registerUserGoogle = (userData, loginUser,history) => dispatch => {
           history.push('/dashboard');
 
         })
+        .catch(res => {
+          // Save to localStorage
+          // const { token} = loginUser.token;
+          // console.log("Token in the catch of login ", token);
+          // localStorage.setItem('jwtToken', token);
+          //
+          // // Set token to Auth header
+          // setAuthToken(token);
+          //
+          // // Decode token to get user data
+          // const decoded = jwt_decode(token);
+          // console.log(decoded);
+          // // Set current user
+          // dispatch(setCurrentUser(decoded));
+          console.log(res);
+          history.push('/');
+
+        })
     )
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      }));
+    .catch(res => history.push('/dashboard'));
 };
 
 // Login - Get User Token
@@ -93,6 +140,7 @@ export const setCurrentUser = (decoded) => {
     payload: decoded
   };
 };
+
 
 // current_user
 export const fetchUser = () =>
