@@ -78,6 +78,7 @@ class Landing extends Component {
       };
 
       //console.log(response.getAuthResponse().id_token);
+      console.log(newUser.name);
       const id_token = {success: true, token: 'Bearer ' + response.getAuthResponse().id_token}
 
       const loginUser = {
