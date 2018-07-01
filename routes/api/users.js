@@ -5,6 +5,9 @@ var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 var keys = require('../../config/keys');
 var passport = require('passport');
+const nodemailer = require('nodemailer');
+const emailConfirm = require('../../config/keys').emailConfirm;
+const passwordConfirm = require('../../config/keys').passwordConfirm;
 
 
 // Load input validation
@@ -23,6 +26,7 @@ router.get('/test', (req, res) => res.json({msg: "Users works"}));
 // @route POST api/users/register
 // @desc Register user
 // @access Public
+var rand,mailOptions,host,link;  // Initialized the variables
 router.post('/register', (req, res) => {
 
   const {errors, isValid} = validateRegisterInput(req.body);
@@ -64,6 +68,45 @@ router.post('/register', (req, res) => {
               .catch(err => console.log(err))
           })
         })
+        
+        // Send a email to verify
+        nodemailer.createTestAccount((err, account) => {
+          // create reusable transporter object using the default SMTP transport
+          let transporter = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+              user: emailConfirm,
+              pass: passwordConfirm
+            }
+          });
+
+          // setup email data with unicode symbols
+          //rand=Math.floor((Math.random() * 100) + 54);
+          rand = newUser.email;
+          host=req.get('host');
+          link="https://"+req.get('host')+"/api/users/verify?id="+rand;
+          //var url = `http://localhost:3000/confirmation/${newUser.email}`;
+          mailOptions = {
+            from: '"Networkout team" <networkout@gmail.com>', // sender address
+            to: newUser.email, // list of receivers
+            subject: 'Thanks for registration!', // Subject line
+            text: 'Please confirm your email identification', // plain text body
+            html: `Please click this email to confirm your email: <a href="${link}">${link}</a>` // html body
+          };
+
+          // send mail with defined transport object
+          transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+              return console.log(error);
+            }
+            console.log('Message sent: %s', info.messageId);
+            // Preview only available when sending through an Ethereal account
+            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+            // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+            // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+          });
+        });
       }
     })
 });
@@ -89,6 +132,12 @@ router.post('/login', (req, res) => {
       if(!user){
         errors.email = 'User not found';
         return res.status(404).json(errors);
+      }
+
+      // Check whether the user has checked the link or not
+      if(!user.confirm){
+        errors.confirm = "Please confirm your email before login";
+        return res.status(400).json(errors);
       }
 
       bcrypt.compare(password, user.password)
@@ -118,6 +167,51 @@ router.post('/login', (req, res) => {
 });
 
 
+
+// Check for the click on the verification link
+router.get('/verify',function(req,res){
+  console.log(req.protocol+":/"+req.get('host'));
+  //if((req.protocol+"://"+req.get('host'))==("http://"+host))
+  //{
+    console.log("Domain is matched. Information is from Authentic email");
+    if(req.query.id==rand)
+    {
+      console.log("email is verified");
+      //res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
+      //res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
+      User.findOne({email: mailOptions.to})
+        .then(user => {
+          console.log(user);
+          console.log("User found in the database");
+          User.findOneAndUpdate(
+            {email: mailOptions.to},
+            { $set: {confirm: true}},
+            {new: true}
+          )
+            .then(
+              res.end("<h1>Email "+mailOptions.to+" is been Successfully verified")
+            );
+        })
+        .catch(err => res.status(400).json({invalid: "The link you clicked in invalid"}))
+    }
+    else
+    {
+      console.log("email is not verified");
+      res.end("<h1>Bad Request</h1>");
+    }
+  //}
+  // else
+  // {
+  //   res.end("<h1>Request is from unknown source");
+  // }
+});
+
+
+router.put('/confirmed', function(req, res){
+  console.log("I am in the confirmed request of : ", req);
+});
+
+
 // @route GET api/users/current
 // @desc Return current user
 // @access Private
@@ -133,50 +227,52 @@ router.get('/current', passport.authenticate('jwt', {session: false}),
 
 
 // Google login
-router.post('/registerGoogle', (req, res) => {
-
-  //const {errors, isValid} = validateRegisterInput(req.body);
-
-  // Check Validation
-  // if(!isValid){
-  //   return res.status(400).json(errors);
-  // }
-
-  User.findOne({
-    email: req.body.email
-  })
-    .then(user => {
-      if(user){
-        errors.email = 'Email already exists';
-        return res.status(400).json(errors);
-      }
-      else{
-        var avatar = gravatar.url(req.body.email, {
-          s: '200', // Size
-          r: 'pg',  // Rating
-          d: 'mm'  // Default
-        });
-
-        var newUser = new User({
-          name: req.body.name,
-          email: req.body.email,
-          avatar: avatar,
-          password: req.body.password
-        });
-
-        bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if(err) throw err;
-            newUser.password = hash;
-            newUser
-              .save()
-              .then(user => res.json(user))
-              .catch(err => console.log(err))
-          })
-        })
-      }
-    })
-});
+// router.post('/registerGoogle', (req, res) => {
+//
+//   //const {errors, isValid} = validateRegisterInput(req.body);
+//
+//   // Check Validation
+//   // if(!isValid){
+//   //   return res.status(400).json(errors);
+//   // }
+//
+//   User.findOne({
+//     email: req.body.email,
+//     confirm: req.body.confirm
+//   })
+//     .then(user => {
+//       if(user){
+//         errors.email = 'Email already exists';
+//         return res.status(400).json(errors);
+//       }
+//       else{
+//         var avatar = gravatar.url(req.body.email, {
+//           s: '200', // Size
+//           r: 'pg',  // Rating
+//           d: 'mm'  // Default
+//         });
+//
+//         var newUser = new User({
+//           name: req.body.name,
+//           email: req.body.email,
+//           avatar: avatar,
+//           password: req.body.password,
+//           confirm: true
+//         });
+//
+//         bcrypt.genSalt(10, (err, salt) => {
+//           bcrypt.hash(newUser.password, salt, (err, hash) => {
+//             if(err) throw err;
+//             newUser.password = hash;
+//             newUser
+//               .save()
+//               .then(user => res.json(user))
+//               .catch(err => console.log(err))
+//           })
+//         })
+//       }
+//     })
+// });
 
 
 // Google signin Registeration
@@ -187,7 +283,7 @@ router.post('/registerGoogle', (req, res) => {
   })
     .then(user => {
       if(user){
-        const payload = {id: user.id, name: user.name, avatar: user.avatar};
+        const payload = {id: user.id, name: user.name, avatar: user.avatar, confirm: user.confirm};
 
         // Sign Token
         jwt.sign(
@@ -213,7 +309,8 @@ router.post('/registerGoogle', (req, res) => {
           name: req.body.name,
           email: req.body.email,
           avatar: avatar,
-          password: "123456789"
+          password: "123456789",
+          confirm: true
         });
 
         console.log(newUser);

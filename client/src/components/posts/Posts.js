@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import PostForm from './PostForm';
 import Spinner from '../common/Spinner';
 import {getPosts} from "../../actions/postActions";
-import PostFeed from './PostFeed';
+//import PostFeed from './PostFeed';
 import './PostPagination.css';
 import PostItem from './PostItem';
 
@@ -59,7 +59,7 @@ class Posts extends Component{
 
         renderPageNumbers = pageNumbers.map(number => {
           return (
-            <li class="page-link"
+            <li className="page-link"
                 key={number}
                 id={number}
                 onClick={this.handleClick}

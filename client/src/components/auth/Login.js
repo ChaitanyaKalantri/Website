@@ -11,6 +11,7 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
+      confirm: '',
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
@@ -74,7 +75,7 @@ class Login extends Component {
                   type="password"
                   onChange={this.onChange}
                   placeholder="Password"
-                  error={errors.password}
+                  error={errors.password || errors.confirm}
                 />
 
                 <input type="submit" className="btn btn-info btn-block mt-4"/>
