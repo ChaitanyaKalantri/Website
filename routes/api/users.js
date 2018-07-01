@@ -91,7 +91,7 @@ router.post('/register', (req, res) => {
 
           //var url = `http://localhost:3000/confirmation/${newUser.email}`;
           mailOptions = {
-            from: '"Networkout team" <chaitanyakalantri835@gmail.com>', // sender address
+            from: emailConfirm, // sender address
             to: newUser.email, // list of receivers
             subject: 'Thanks for registration!', // Subject line
             text: 'Please confirm your email identification', // plain text body
