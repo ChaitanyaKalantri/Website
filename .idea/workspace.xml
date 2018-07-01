@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ea62010c-e5a4-4959-8ef3-34741b40d9d0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/auth/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/posts/Posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/posts/Posts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/keys_prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/keys_prod.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/users.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -60,8 +56,8 @@
       <file leaf-file-name="User.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/User.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+            <state>
+              <caret column="35" lean-forward="true" selection-start-column="35" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -69,8 +65,8 @@
       <file leaf-file-name="users.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/api/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="78" column="35" lean-forward="true" selection-start-line="78" selection-start-column="35" selection-end-line="78" selection-end-column="35" />
+            <state relative-caret-position="-4138">
+              <caret line="8" column="63" lean-forward="true" selection-start-line="8" selection-start-column="63" selection-end-line="8" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -121,7 +117,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>signOut</find>
       <find>client_id</find>
       <find>config/keys</find>
       <find>/api/authgoogle</find>
@@ -150,6 +145,7 @@
       <find>confirm: true</find>
       <find>http://localhost</find>
       <find>registerGoogle</find>
+      <find>mongoU</find>
       <find>emailConfirm</find>
     </findStrings>
     <dirStrings>
@@ -205,13 +201,13 @@
         <option value="$PROJECT_DIR$/client/src/components/profiles/ProfilesPagination.css" />
         <option value="$PROJECT_DIR$/client/src/components/profiles/Profiles.js" />
         <option value="$PROJECT_DIR$/client/src/components/posts/PostPagination.css" />
-        <option value="$PROJECT_DIR$/models/User.js" />
         <option value="$PROJECT_DIR$/client/src/components/posts/Posts.js" />
         <option value="$PROJECT_DIR$/client/src/components/auth/Login.js" />
         <option value="$PROJECT_DIR$/client/src/config/keys_dev.js" />
         <option value="$PROJECT_DIR$/client/src/config/keys_prod.js" />
         <option value="$PROJECT_DIR$/config/keys_dev.js" />
         <option value="$PROJECT_DIR$/config/keys_prod.js" />
+        <option value="$PROJECT_DIR$/models/User.js" />
         <option value="$PROJECT_DIR$/routes/api/users.js" />
       </list>
     </option>
@@ -370,7 +366,7 @@
       <option name="presentableId" value="Default" />
       <updated>1529139421784</updated>
       <workItem from="1529139424174" duration="179203000" />
-      <workItem from="1530170143746" duration="64650000" />
+      <workItem from="1530170143746" duration="66410000" />
     </task>
     <task id="LOCAL-00001" summary="Hard coded id's and removed the config folder from src">
       <created>1530194213981</created>
@@ -383,7 +379,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="243853000" />
+    <option name="totallyTimeSpent" value="245613000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -784,13 +780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/User.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/config/keys.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -815,6 +804,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/User.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="35" lean-forward="true" selection-start-column="35" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config/keys_prod.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -824,8 +820,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="78" column="35" lean-forward="true" selection-start-line="78" selection-start-column="35" selection-end-line="78" selection-end-column="35" />
+        <state relative-caret-position="-4138">
+          <caret line="8" column="63" lean-forward="true" selection-start-line="8" selection-start-column="63" selection-end-line="8" selection-end-column="63" />
         </state>
       </provider>
     </entry>

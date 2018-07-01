@@ -84,10 +84,13 @@ router.post('/register', (req, res) => {
           //rand=Math.floor((Math.random() * 100) + 54);
           rand = newUser.email;
           host=req.get('host');
-          link="https://"+req.get('host')+"/api/users/verify?id="+rand;
+          //link="http://"+req.get('host')+"/api/users/verify?id="+rand;
+          link="https://"+req.get('host')+"/verify?id="+rand;
+          console.log("Link is: ", link);
+          console.log("Host is: ", host);
           //var url = `http://localhost:3000/confirmation/${newUser.email}`;
           mailOptions = {
-            from: '"Networkout team" <networkout@gmail.com>', // sender address
+            from: '"Networkout team" <chaitanyakalantri835@gmail.com>', // sender address
             to: newUser.email, // list of receivers
             subject: 'Thanks for registration!', // Subject line
             text: 'Please confirm your email identification', // plain text body
