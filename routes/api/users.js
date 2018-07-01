@@ -88,6 +88,7 @@ router.post('/register', (req, res) => {
           link="https://"+req.get('host')+"/api/users/verify?id="+rand;
           console.log("Link is: ", link);
           console.log("Host is: ", host);
+
           //var url = `http://localhost:3000/confirmation/${newUser.email}`;
           mailOptions = {
             from: '"Networkout team" <chaitanyakalantri835@gmail.com>', // sender address
@@ -97,6 +98,8 @@ router.post('/register', (req, res) => {
             html: `Please click this email to confirm your email: <a href="${link}">${link}</a>` // html body
           };
 
+          console.log("From address: ", mailOptions.from);
+          console.log("To address: ", mailOptions.to);
           // send mail with defined transport object
           transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
