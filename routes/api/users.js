@@ -84,10 +84,8 @@ router.post('/register', (req, res) => {
           //rand=Math.floor((Math.random() * 100) + 54);
           rand = newUser.email;
           host=req.get('host');
-          //link="http://"+req.get('host')+"/api/users/verify?id="+rand;
-          //localhost
-          //link="https://"+req.get('host')+"/api/users/verify?id="+rand;
-          link="https://"+req.get('host')+"/verify?id="+rand;
+
+          link="http://"+req.get('host')+"/api/users/verify?id="+rand;
           console.log("Link is: ", link);
           console.log("Host is: ", host);
 
