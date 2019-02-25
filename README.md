@@ -21,7 +21,9 @@ See deployment for notes on how to deploy the project on a live system.
 1. Simply Download the project from the github
 2. Run the following commands:
   - npm install
-  - npm install client-install
+  - cd client
+  - npm install
+  - cd ..
   - npm run dev
 3. The website is up and running!
 
